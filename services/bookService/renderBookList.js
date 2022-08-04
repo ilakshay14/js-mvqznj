@@ -3,6 +3,8 @@ export const renderBooksList = (books, domElement) => {
     return;
   }
 
+  domElement.innerHTML = '';
+
   books.forEach(book => {
     const tr = document.createElement('tr');
     const tdBookName = document.createElement('td');

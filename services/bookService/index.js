@@ -1,18 +1,12 @@
 import { BOOKS } from '../../index.util';
+import { renderBooksList } from './renderBookList';
 
 const populateBooks = (event, htmlElementForBooks) => {
   const selectedGenre = event ? event.target.value : 'All';
 
+  const bookList = selectedGenre === 'All'? BOOKS : BOOKS.filter(book => book.genre === selectedGenre);
 
-  htmlElementForBooks.innerHTML = '';
-  for (let i = 0; i < BOOKS.length; i++) {
-    if (selectedGenre == 'All' || selectedGenre == BOOKS[i].genre) {
-      const tr = document.createElement('tr');
-      tr.innerHTML =
-        '<td>' + BOOKS[i].name + '</td>' + '<td>' + BOOKS[i].genre + '</td>';
-      htmlElementForBooks.appendChild(tr);
-    }
-  }
+  renderBooksList(bookList, htmlElementForBooks)
 };
 
 export const init = (event, htmlElementForBooks) => {
